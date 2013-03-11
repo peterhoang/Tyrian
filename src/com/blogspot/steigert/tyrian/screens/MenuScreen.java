@@ -1,6 +1,9 @@
 package com.blogspot.steigert.tyrian.screens;
  
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.blogspot.steigert.tyrian.Tyrian;
  
@@ -8,54 +11,51 @@ public class MenuScreen
     extends
         AbstractScreen
 {
-    // setup the dimensions of the menu buttons
-    private static final float BUTTON_WIDTH = 300f;
-    private static final float BUTTON_HEIGHT = 60f;
-    private static final float BUTTON_SPACING = 10f;
- 
-    public MenuScreen(
-        Tyrian game )
-    {
-        super( game );
-    }
- 
-    @Override
-    public void resize(
-        int width,
-        int height )
-    {
-        super.resize( width, height );
-        final float buttonX = ( width - BUTTON_WIDTH ) / 2;
-        float currentY = 280f;
- 
-        // label "welcome"
-        Label welcomeLabel = new Label( "Welcome to Tyrian for Android!", getSkin() );
-        welcomeLabel.setX( ( width - welcomeLabel.getWidth() ) / 2 );
-        welcomeLabel.setY( currentY + 100 );
-        stage.addActor( welcomeLabel );
- 
-        // button "start game"
-        TextButton startGameButton = new TextButton( "Start game", getSkin() );
-        startGameButton.setX(buttonX);
-        startGameButton.setY(currentY);
-        startGameButton.setWidth(BUTTON_WIDTH);
-        startGameButton.setHeight(BUTTON_HEIGHT);
-        stage.addActor( startGameButton );
- 
-        // button "options"
-        TextButton optionsButton = new TextButton( "Options", getSkin() );
-        optionsButton.setX(buttonX);
-        optionsButton.setY( currentY -= BUTTON_HEIGHT + BUTTON_SPACING );
-        optionsButton.setWidth(BUTTON_WIDTH);
-        optionsButton.setHeight(BUTTON_HEIGHT);
-        stage.addActor( optionsButton );
- 
-        // button "hall of fame"
-        TextButton hallOfFameButton = new TextButton( "Hall of Fame", getSkin() );
-        hallOfFameButton.setX(buttonX);
-        hallOfFameButton.setY( currentY -= BUTTON_HEIGHT + BUTTON_SPACING );
-        hallOfFameButton.setWidth(BUTTON_WIDTH);
-        hallOfFameButton.setHeight(BUTTON_HEIGHT);
-        stage.addActor( hallOfFameButton );
-    }
+	public MenuScreen(
+	        Tyrian game )
+	    {
+	        super( game );
+	    }
+
+	    @Override
+	    public void resize(
+	        int width,
+	        int height )
+	    {
+	        super.resize( width, height );
+
+	        // retrieve the skin (created on the AbstractScreen class)
+	        Skin skin = super.getSkin();
+
+	        // create the table actor
+	        Table table = new Table( getSkin() );
+	        table.setWidth(width);
+	        table.setHeight(height);
+	        table.layout();
+        
+
+	        // register the label "welcome"
+	        Label welcomeLabel = new Label( "Welcome to Tyrian for Android!", skin );
+	        table.add(welcomeLabel);
+
+	        // register the button "start game"
+	        TextButton startGameButton = new TextButton( "Start game", skin );
+	        table.row();
+	        table.add( startGameButton );
+
+	        // register the button "options"
+	        TextButton optionsButton = new TextButton( "Options", skin );
+	        table.row();
+	        table.add(  optionsButton );
+
+	        // register the button "hall of fame"
+	        TextButton hallOfFameButton = new TextButton( "Hall of Fame", skin );
+	        table.row();
+	        table.add(hallOfFameButton );
+
+
+	        
+	        // add the table to the stage and retrieve its layout
+	        stage.addActor( table );
+	    }
 }
