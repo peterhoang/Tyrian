@@ -80,7 +80,6 @@ public abstract class AbstractScreen
     	
     	// resize the stage
     	stage.setViewport(width, height, true);
-    	stage.clear();
     }
 
     @Override

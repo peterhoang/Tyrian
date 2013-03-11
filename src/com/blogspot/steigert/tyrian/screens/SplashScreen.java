@@ -15,6 +15,7 @@ public class SplashScreen
         AbstractScreen
 {
     private Texture splashTexture;
+    private Image splashImage;
 
     public SplashScreen(
         Tyrian game )
@@ -32,25 +33,14 @@ public class SplashScreen
 
         // we set the linear texture filter to improve the stretching
         splashTexture.setFilter( TextureFilter.Linear, TextureFilter.Linear );
-    }
-    
-    @Override
-    public void resize(int width, int height) 
-    {
-    	super.resize(width, height);
-    	
-    	stage.clear();
-    	
+           	
     	// in the image atlas, our splash image begins at (0,0) of the
         // upper-left corner and has a dimension of 512x301
         TextureRegion splashRegion = new TextureRegion( splashTexture, 0, 0, 512, 301 );
         TextureRegionDrawable drawableRegion = new TextureRegionDrawable(splashRegion);
         
-        // here we create the splash image actor and set its size
-        Image splashImage = new Image( drawableRegion, Scaling.stretch, Align.bottom | Align.left ); 
-        
-        splashImage.setWidth(width);
-        splashImage.setHeight(height);
+        // here we create the splash image actor; size is set at resize()
+        splashImage = new Image( drawableRegion, Scaling.stretch, Align.bottom | Align.left ); 
         
         // Set the image to 0 alpha for fade-in effect
         splashImage.getColor().a = 0f;
@@ -63,6 +53,17 @@ public class SplashScreen
         })));
         
         stage.addActor(splashImage);
+    }
+    
+    @Override
+    public void resize(int width, int height) 
+    {
+    	super.resize(width, height);
+    	
+    	splashImage.setWidth(width);
+    	splashImage.setHeight(height);
+    	
+    	splashImage.invalidateHierarchy();
     }
 
 
