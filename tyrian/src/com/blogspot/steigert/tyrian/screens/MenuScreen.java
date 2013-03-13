@@ -46,6 +46,12 @@ public class MenuScreen
 
 	        // register the button "options"
 	        TextButton optionsButton = new TextButton( "Options", skin );
+	        optionsButton.addListener(new InputListener() {
+	        	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+	        		game.setScreen(game.getOptionsScreen());
+	        		return true;
+	        	}
+	        });
 	        table.row();
 	        table.add(  optionsButton );
 

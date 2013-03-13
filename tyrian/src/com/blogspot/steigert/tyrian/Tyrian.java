@@ -4,9 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.FPSLogger;
-import com.blogspot.steigert.tyrian.screens.HighScoresScreen;
-import com.blogspot.steigert.tyrian.screens.MenuScreen;
-import com.blogspot.steigert.tyrian.screens.SplashScreen;
+import com.blogspot.steigert.tyrian.screens.*;
 import com.blogspot.steigert.tyrian.services.ProfileService;
 
 public class Tyrian extends Game {
@@ -19,10 +17,12 @@ public class Tyrian extends Game {
     
     // services
     private final ProfileService profileService;
+    private final TyrianPreferences preference;
     
     public Tyrian() 
     {
     	profileService = new ProfileService();
+    	preference = new TyrianPreferences();
     }
     
     // Service
@@ -30,6 +30,11 @@ public class Tyrian extends Game {
     public ProfileService getProfileService()
     {
     	return profileService;
+    }
+    
+    public TyrianPreferences getPreferences()
+    {
+    	return preference;
     }
     
     // Screen methods
@@ -47,6 +52,31 @@ public class Tyrian extends Game {
     public HighScoresScreen getHighScoresScreen()
     {
         return new HighScoresScreen( this );
+    }
+    
+    public LevelScreen getLevelScreen()
+    {
+    	return new LevelScreen(this);
+    }
+    
+    public ProfileScreen getProfileScreen()
+    {
+    	return new ProfileScreen(this);
+    }
+    
+    public StartGameScreen getStartGameScreen()
+    {
+    	return new StartGameScreen(this);
+    }
+    
+    public LoadSavedGameScreen getLoadSavedGameScreen()
+    {
+    	return new LoadSavedGameScreen(this);
+    }
+    
+    public OptionsScreen getOptionsScreen()
+    {
+    	return new OptionsScreen(this);
     }
 	
     // Game methods
