@@ -12,6 +12,9 @@ public class Tyrian extends Game {
 	// constant useful for logging
     public static final String LOG = Tyrian.class.getSimpleName();
 
+ // whether we are in development mode
+    public static final boolean DEV_MODE = true;
+    
     // a libgdx helper class that logs the current FPS each second
     private FPSLogger fpsLogger;
     
@@ -108,7 +111,7 @@ public class Tyrian extends Game {
         super.render();
 
         // output the current FPS
-        fpsLogger.log();
+        if (DEV_MODE) fpsLogger.log();
     }
 
     @Override
@@ -116,6 +119,8 @@ public class Tyrian extends Game {
     {
         super.pause();
         Gdx.app.log( Tyrian.LOG, "Pausing game" );
+        
+        profileService.persist();
     }
 
     @Override

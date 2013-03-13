@@ -1,0 +1,122 @@
+
+pack.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+splash-screen/splash-image
+  rotate: false
+  xy: 1, 1
+  size: 512, 301
+  orig: 512, 301
+  offset: 0, 0
+  index: -1
+
+pack2.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+start-game-screen/front-gun-missile
+  rotate: false
+  xy: 1, 1
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+start-game-screen/front-gun-proton
+  rotate: false
+  xy: 25, 1
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+start-game-screen/front-gun-pulse
+  rotate: false
+  xy: 49, 1
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+start-game-screen/front-gun-vulcan
+  rotate: false
+  xy: 73, 1
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+start-game-screen/front-gun-wave
+  rotate: false
+  xy: 97, 1
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+start-game-screen/shield-aif
+  rotate: false
+  xy: 121, 1
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+start-game-screen/shield-ghef
+  rotate: false
+  xy: 145, 1
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+start-game-screen/shield-gles
+  rotate: false
+  xy: 169, 1
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+start-game-screen/shield-mlxs
+  rotate: false
+  xy: 193, 1
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+start-game-screen/shield-sig
+  rotate: false
+  xy: 217, 1
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+start-game-screen/ship-model-carrot
+  rotate: false
+  xy: 241, 1
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+start-game-screen/ship-model-gencore
+  rotate: false
+  xy: 265, 1
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+start-game-screen/ship-model-gencore2
+  rotate: false
+  xy: 289, 1
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+start-game-screen/ship-model-stalker
+  rotate: false
+  xy: 313, 1
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+start-game-screen/ship-model-talon
+  rotate: false
+  xy: 337, 1
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
