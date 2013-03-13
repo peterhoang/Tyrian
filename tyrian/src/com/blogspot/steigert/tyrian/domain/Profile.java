@@ -17,7 +17,7 @@ public class Profile
     private int currentLevelId;
     private int credits;
     private Map<Integer,Integer> highScores;
-    //private Ship ship;
+    private Ship ship;
 
     public Profile()
     {
@@ -77,37 +77,37 @@ public class Profile
     /**
      * Retrieves the current ship configuration.
      */
-//    public Ship getShip()
-//    {
-//        return ship;
-//    }
+    public Ship getShip()
+    {
+    	return ship;
+    }
 
     /**
      * Checks whether the given item can be bought.
      */
-//    public boolean canBuy(
-//        Item item )
-//    {
-//        if( ship.contains( item ) ) {
-//            return false;
-//        }
-//        if( item.getPrice() > credits ) {
-//            return false;
-//        }
-//        return true;
-//    }
+    public boolean canBuy(
+        Item item )
+    {
+        if( ship.contains( item ) ) {
+            return false;
+        }
+        if( item.getPrice() > credits ) {
+            return false;
+        }
+        return true;
+    }
 
     /**
      * Buys the given item.
      */
-//    public void buy(
-//        Item item )
-//    {
-//        if( canBuy( item ) ) {
-//            credits -= item.getPrice();
-//            ship.install( item );
-//        }
-//    }
+    public void buy(
+        Item item )
+    {
+        if( canBuy( item ) ) {
+            credits -= item.getPrice();
+            ship.install( item );
+        }
+    }
 
     // Serializable implementation
 
