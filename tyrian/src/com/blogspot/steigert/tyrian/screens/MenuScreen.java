@@ -1,6 +1,7 @@
 package com.blogspot.steigert.tyrian.screens;
  
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -50,6 +51,12 @@ public class MenuScreen
 
 	        // register the button "hall of fame"
 	        TextButton hallOfFameButton = new TextButton( "Hall of Fame", skin );
+	        hallOfFameButton.addListener(new InputListener() {
+	        	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+	        		game.setScreen(game.getHighScoresScreen());
+	        		return true;
+	        	}
+	        });
 	        table.row();
 	        table.add(hallOfFameButton );
 

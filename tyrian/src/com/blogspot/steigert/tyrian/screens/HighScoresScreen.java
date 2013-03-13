@@ -1,7 +1,7 @@
 package com.blogspot.steigert.tyrian.screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -33,6 +33,8 @@ public class HighScoresScreen
         // create the table actor and add it to the stage
         table = new Table( skin );
         stage.addActor( table );
+        
+        profile = game.getProfileService().retrieveProfile();
 
         // create the labels widgets
         String level1Highscore = String.valueOf( profile.getHighScore( 0 ) );
@@ -49,16 +51,12 @@ public class HighScoresScreen
        
         // register the button "start game"
         TextButton backButton = new TextButton( "Back to main menu", skin );
-//        backButton.setClickListener( new ClickListener() {
-//            @Override
-//            public void click(
-//                Actor actor,
-//                float x,
-//                float y )
-//            {
-//                game.setScreen( game.getMenuScreen() );
-//            }
-//        } );
+        backButton.addListener(new InputListener() {
+        	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+        		game.setScreen(game.getMenuScreen());
+        		return true;
+        	}
+        });
         table.row();table.add( backButton );       
     }
 

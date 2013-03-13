@@ -4,8 +4,10 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.blogspot.steigert.tyrian.screens.HighScoresScreen;
 import com.blogspot.steigert.tyrian.screens.MenuScreen;
 import com.blogspot.steigert.tyrian.screens.SplashScreen;
+import com.blogspot.steigert.tyrian.services.ProfileService;
 
 public class Tyrian extends Game {
 
@@ -14,6 +16,21 @@ public class Tyrian extends Game {
 
     // a libgdx helper class that logs the current FPS each second
     private FPSLogger fpsLogger;
+    
+    // services
+    private final ProfileService profileService;
+    
+    public Tyrian() 
+    {
+    	profileService = new ProfileService();
+    }
+    
+    // Service
+    
+    public ProfileService getProfileService()
+    {
+    	return profileService;
+    }
     
     // Screen methods
     
@@ -26,6 +43,11 @@ public class Tyrian extends Game {
     {
     	return new MenuScreen(this);
     }
+    
+    public HighScoresScreen getHighScoresScreen()
+    {
+        return new HighScoresScreen( this );
+    }
 	
     // Game methods
 
@@ -34,7 +56,8 @@ public class Tyrian extends Game {
     {
         Gdx.app.log( Tyrian.LOG, "Creating game" );
         fpsLogger = new FPSLogger();
-        setScreen( getSplashScreen() );
+       // profileService.retrieveProfile();
+
     }
 
     @Override
@@ -44,6 +67,9 @@ public class Tyrian extends Game {
     {
         super.resize( width, height );
         Gdx.app.log( Tyrian.LOG, "Resizing game to: " + width + " x " + height );
+        if (getScreen() == null) {
+            setScreen( getSplashScreen() );
+        }
     }
 
     @Override
