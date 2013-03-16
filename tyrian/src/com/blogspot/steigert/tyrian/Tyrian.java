@@ -5,7 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.blogspot.steigert.tyrian.screens.*;
-import com.blogspot.steigert.tyrian.services.ProfileService;
+import com.blogspot.steigert.tyrian.services.PreferenceManager;
+import com.blogspot.steigert.tyrian.services.ProfileManager;
 
 public class Tyrian extends Game {
 
@@ -19,23 +20,21 @@ public class Tyrian extends Game {
     private FPSLogger fpsLogger;
     
     // services
-    private final ProfileService profileService;
-    private final TyrianPreferences preference;
+    private ProfileManager profileService;
+    private PreferenceManager preference;
     
     public Tyrian() 
     {
-    	profileService = new ProfileService();
-    	preference = new TyrianPreferences();
     }
     
     // Service
     
-    public ProfileService getProfileService()
+    public ProfileManager getProfileService()
     {
     	return profileService;
     }
     
-    public TyrianPreferences getPreferences()
+    public PreferenceManager getPreferences()
     {
     	return preference;
     }
@@ -91,6 +90,8 @@ public class Tyrian extends Game {
         fpsLogger = new FPSLogger();
        // profileService.retrieveProfile();
 
+    	profileService = new ProfileManager();
+    	preference = new PreferenceManager();
     }
 
     @Override

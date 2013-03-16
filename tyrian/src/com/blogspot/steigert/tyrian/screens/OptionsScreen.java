@@ -44,12 +44,12 @@ public class OptionsScreen
 
         // create the labels widgets
         final CheckBox soundEffectsCheckbox = new CheckBox( "soundEffectsCheckbox", skin );
-        soundEffectsCheckbox.setChecked( game.getPreferences().isSoundEffectsEnabled() );
+        soundEffectsCheckbox.setChecked( game.getPreferences().isSoundEnabled() );
         soundEffectsCheckbox.addListener( new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
             {
                 boolean enabled = soundEffectsCheckbox.isChecked();
-                game.getPreferences().setSoundEffectsEnabled( enabled );
+                game.getPreferences().setSoundEnabled( enabled );
                 return true;
             }
         } );
