@@ -5,8 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.blogspot.steigert.tyrian.screens.*;
+import com.blogspot.steigert.tyrian.services.MusicManager;
 import com.blogspot.steigert.tyrian.services.PreferenceManager;
 import com.blogspot.steigert.tyrian.services.ProfileManager;
+import com.blogspot.steigert.tyrian.services.SoundManager;
 
 public class Tyrian extends Game {
 
@@ -21,7 +23,9 @@ public class Tyrian extends Game {
     
     // services
     private ProfileManager profileService;
+    private SoundManager soundManager;
     private PreferenceManager preference;
+    private MusicManager musicManager;
     
     public Tyrian() 
     {
@@ -37,6 +41,16 @@ public class Tyrian extends Game {
     public PreferenceManager getPreferences()
     {
     	return preference;
+    }
+    
+    public SoundManager getSoundManager()
+    {
+    	return soundManager;
+    }
+    
+    public MusicManager getMusicManager()
+    {
+    	return musicManager;
     }
     
     // Screen methods
@@ -88,10 +102,21 @@ public class Tyrian extends Game {
     {
         Gdx.app.log( Tyrian.LOG, "Creating game" );
         fpsLogger = new FPSLogger();
-       // profileService.retrieveProfile();
-
+        
+        preference = new PreferenceManager();
+    	
+    	// sound
+    	soundManager = new SoundManager();
+    	soundManager.setVolume(preference.getVolume());
+    	soundManager.setEnabled(preference.isSoundEnabled());
+    	
+    	// music
+    	musicManager = new MusicManager();
+    	musicManager.setVolume(preference.getVolume());
+    	musicManager.setEnabled(preference.isMusicEnabled());
+    	
     	profileService = new ProfileManager();
-    	preference = new PreferenceManager();
+    	profileService.retrieveProfile();
     }
 
     @Override
@@ -144,5 +169,8 @@ public class Tyrian extends Game {
     {
         super.dispose();
         Gdx.app.log( Tyrian.LOG, "Disposing game" );
+        
+        soundManager.dispose();
+        musicManager.dispose();
     }
 }

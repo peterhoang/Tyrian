@@ -13,6 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.blogspot.steigert.tyrian.Tyrian;
+import com.blogspot.steigert.tyrian.services.MusicManager.TyrianMusic;
+import com.blogspot.steigert.tyrian.services.SoundManager.TyrianSound;
 
 /**
  * A simple options screen.
@@ -45,24 +47,35 @@ public class OptionsScreen
         // create the labels widgets
         final CheckBox soundEffectsCheckbox = new CheckBox( "soundEffectsCheckbox", skin );
         soundEffectsCheckbox.setChecked( game.getPreferences().isSoundEnabled() );
-        soundEffectsCheckbox.addListener( new InputListener() {
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+        soundEffectsCheckbox.addListener( new ChangeListener() {
+            @Override
+            public void changed(
+                ChangeEvent event,
+                Actor actor )
             {
                 boolean enabled = soundEffectsCheckbox.isChecked();
                 game.getPreferences().setSoundEnabled( enabled );
-                return true;
+                game.getSoundManager().setEnabled( enabled );
+                game.getSoundManager().play( TyrianSound.CLICK );
             }
         } );
         table.row(); table.add( soundEffectsCheckbox );
 
         final CheckBox musicCheckbox = new CheckBox( "musicCheckbox", skin );
         musicCheckbox.setChecked( game.getPreferences().isMusicEnabled() );
-        musicCheckbox.addListener( new InputListener() {
-           public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+        musicCheckbox.addListener( new ChangeListener() {
+            @Override
+            public void changed(
+                ChangeEvent event,
+                Actor actor )
             {
                 boolean enabled = musicCheckbox.isChecked();
                 game.getPreferences().setMusicEnabled( enabled );
-                return true;
+                game.getMusicManager().setEnabled( enabled );
+                game.getSoundManager().play( TyrianSound.CLICK );
+
+                // if the music is now enabled, start playing the menu music
+                if( enabled ) game.getMusicManager().play( TyrianMusic.MENU );
             }
         } );
         table.row();table.add( musicCheckbox );
@@ -74,11 +87,11 @@ public class OptionsScreen
             @Override
             public void changed(ChangeListener.ChangeEvent event, Actor actor)
             {
-            	if (actor instanceof Slider){
-	            	Slider tempslider = (Slider)actor;
-	                game.getPreferences().setVolume( tempslider.getValue() );
-	                updateVolumeLabel();
-            	}
+            	float value = ((Slider)actor).getValue();
+            	game.getPreferences().setVolume(value);
+            	game.getMusicManager().setVolume(value);
+            	game.getSoundManager().setVolume(value);
+            	updateVolumeLabel();
             }
         } );
         table.row();table.add( volumeSlider );

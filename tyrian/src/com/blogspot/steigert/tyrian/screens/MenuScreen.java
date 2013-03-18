@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.blogspot.steigert.tyrian.Tyrian;
+import com.blogspot.steigert.tyrian.services.SoundManager.TyrianSound;
  
 public class MenuScreen
     extends
@@ -41,6 +42,13 @@ public class MenuScreen
 
 	        // register the button "start game"
 	        TextButton startGameButton = new TextButton( "Start game", skin );
+	        startGameButton.addListener(new InputListener() {
+	        	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+	        		game.getSoundManager().play( TyrianSound.CLICK );
+	        		game.setScreen(game.getStartGameScreen());
+	        		return true;
+	        	}
+	        });
 	        table.row();
 	        table.add( startGameButton );
 
@@ -48,6 +56,7 @@ public class MenuScreen
 	        TextButton optionsButton = new TextButton( "Options", skin );
 	        optionsButton.addListener(new InputListener() {
 	        	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+	        		game.getSoundManager().play( TyrianSound.CLICK );
 	        		game.setScreen(game.getOptionsScreen());
 	        		return true;
 	        	}
@@ -59,6 +68,7 @@ public class MenuScreen
 	        TextButton hallOfFameButton = new TextButton( "Hall of Fame", skin );
 	        hallOfFameButton.addListener(new InputListener() {
 	        	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+	        		game.getSoundManager().play( TyrianSound.CLICK );
 	        		game.setScreen(game.getHighScoresScreen());
 	        		return true;
 	        	}

@@ -60,7 +60,7 @@ public class MusicManager implements Disposable
 		}
 	}
 	
-	public void setVolumen(float volume)
+	public void setVolume(float volume)
 	{
 		Gdx.app.log(Tyrian.LOG, "Adjusting music volume to: " + volume);
 		
